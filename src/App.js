@@ -14,23 +14,21 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="style-page">
         <h2>Phone List</h2>
         <form onSubmit={this.handleSubmit}>
           <input
-            id="new-todo"
+            type="text"
             placeholder="Name"
             onChange={this.handleNameChange}
-            value={this.state.text}
+            value={this.state.name}
           />
-
           <input
-            id="new-todo-num"
+            type="number"
             placeholder="Number"
             onChange={this.handleNumberChange}
             value={this.state.number}
           />
-
           <button>
             Add #{this.state.phonelist.length + 1}
           </button>
@@ -41,7 +39,7 @@ class App extends Component {
   }
 
   handleNameChange(event) {
-    this.setState({text: event.target.value});
+    this.setState({name: event.target.value});
   }
 
   handleNumberChange(event) {
@@ -51,13 +49,13 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const newItem = {
-      text: this.state.text,
+      name: this.state.name,
       number: this.state.number,
       id: Date.now()
     };
     this.setState(prevState => ({
       phonelist: prevState.phonelist.concat(newItem),
-      text: '',
+      name: '',
       number: ''
     }));
   }

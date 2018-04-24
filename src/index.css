@@ -3,3 +3,34 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.style-page {
+  width: 60%;
+  padding: 20px;
+  margin: 50px auto;
+  color: #555;
+  background-color: #eee;
+}
+.style-page, .style-page button, input {
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+.style-page button, input {
+  padding: 5px 10px;
+  background-color: #ddd;
+}
+.style-page span {
+  margin-right: 15px;
+  font-style: italic;
+}
+.style-page input {
+  margin-right: 15px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.style-page button {
+  outline: none;
+}
