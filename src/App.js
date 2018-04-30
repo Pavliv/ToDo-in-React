@@ -1,64 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import InputForms from './input_forms'
+import HomeComponent from './home';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state={ phonelist: [] };
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleNumberChange = this.handleNumberChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
   render() {
     return (
-      <div className="style-page">
-        <h2>Phone List</h2>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Name"
-            onChange={this.handleNameChange}
-            value={this.state.name}
-          />
-          <input
-            type="number"
-            placeholder="Number"
-            onChange={this.handleNumberChange}
-            value={this.state.number}
-          />
-          <button>
-            Add #{this.state.phonelist.length + 1}
-          </button>
-        </form>
-        <InputForms phonelist={this.state.phonelist} />
-      </div>
-    );
-  }
+      <BrowserRouter>
+        <div>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/contacts">Contacts</Link>
+              </li>
+            </ul>
 
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
-  }
+          <hr />
 
-  handleNumberChange(event) {
-    this.setState({number: event.target.value});
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const newItem = {
-      name: this.state.name,
-      number: this.state.number,
-      id: Date.now()
-    };
-    this.setState(prevState => ({
-      phonelist: prevState.phonelist.concat(newItem),
-      name: '',
-      number: ''
-    }));
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contacts" component={Contacts} />
+        </div>
+      </BrowserRouter>
+    )
   }
 }
+
+const Home = () => (
+  <div>
+    <h2>Hello, World! Home page</h2>
+    <HomeComponent></HomeComponent>
+  </div>
+);
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
+const Contacts = () => (
+  <div>
+    <h2>Contacts</h2>
+  </div>
+);
 
 export default App;
