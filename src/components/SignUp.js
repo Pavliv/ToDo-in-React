@@ -102,7 +102,7 @@ class SignUpForm extends Component {
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <button disabled={isInvalid} type="submit" class="ui black basic button">
           Sign Up
         </button>
 

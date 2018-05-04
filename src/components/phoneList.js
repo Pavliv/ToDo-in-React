@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import '../App.css';
-import InputForms from './input_forms'
+import InputForms from './inputForms'
 
-class HomeComponent extends Component {
+class PhoneList extends Component {
   constructor(props) {
     super(props);
     this.state={ phonelist: [] };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleNumberChange = this.handleNumberChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   render() {
@@ -21,20 +22,30 @@ class HomeComponent extends Component {
             placeholder="Name"
             onChange={this.handleNameChange}
             value={this.state.name}
+            required
           />
           <input
             type="number"
             placeholder="Number"
             onChange={this.handleNumberChange}
             value={this.state.number}
+            required
           />
           <button>
             Add #{this.state.phonelist.length + 1}
           </button>
         </form>
-        <InputForms phonelist={this.state.phonelist} />
+        <InputForms handleDelete={this.handleDelete} phonelist={this.state.phonelist} />
       </div>
     );
+  }
+
+  handleDelete(itemToBeDeleted) {
+    const newItem = this.state.phonelist.filter((_item) => {
+      return _item != itemToBeDeleted
+    });
+    
+    this.setState({phonelist: newItem });
   }
 
   handleNameChange(event) {
@@ -60,4 +71,4 @@ class HomeComponent extends Component {
   }
 }
 
-export default HomeComponent;
+export default PhoneList;
